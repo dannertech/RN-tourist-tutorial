@@ -9,17 +9,15 @@
 import React, { Component } from 'react';
 
 import { Text } from 'react-native';
-import Results from './Screens/Results';
-import Search from './Screens/Search';
 
-import { createAppContainer } from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import AppContainer from './Navigation';
+
 
 export default class App extends Component {
   render(){
     return(
-      <Text>This is the Homepage!</Text>
+    <AppContainer/>
     )
   }
 }
+
