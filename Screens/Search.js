@@ -11,7 +11,14 @@ export default class Search extends Component {
                 <Image source={HouseImage}></Image>
                 <Text style={styles.description}>Search for houses to buy!</Text>
                 <Text style={styles.description}>Search by place-name or postcode</Text>
+                <View style={styles.flowRight}>
                 <TextInput placeholder="Search" style={styles.searchBar}/>
+                <Button 
+                title="Go"
+                onPress={() => {}}
+            color='#48BBEC'
+                />
+                </View>
             </View>
         )
     }
@@ -26,7 +33,18 @@ const styles = StyleSheet.create({
         marginTop: 25
     },
     searchBar: {
-        textAlign: 'center',
-        borderWidth: 5,
+        height: 36,
+        padding: 4,
+        marginRight: 5,
+        flexGrow: 1,
+        borderWidth: 1,
+        borderColor: '#48BBEC',
+        borderRadius: 8,
+        color: '#48BBEC',
+    },
+    flowRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'stretch',
     }
 })
