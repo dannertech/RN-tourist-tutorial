@@ -8,11 +8,18 @@
 
  import React, {Component} from 'react';
  import Tabs from './config/Navigation';
+ import {StyleSheet} from 'react-native';
 
  export default class App extends Component {
    render(){
      return(
-       <Tabs/>
+       <Tabs style={styles.container}/>
      )
    }
  }
+
+ const styles = StyleSheet.create({
+   container :{
+     flex: 1,
+   }
+ })

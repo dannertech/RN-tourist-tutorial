@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, TextInput, View, Button, ActivityIndicator, Image } from 'react-native';
+import HouseImage from '../Images/tourist-home-image.png';
 
 
 export default class Search extends Component {
+    
     render(){
         return(
-            <Text style={styles.description}>This is the Search page</Text>
+            <View>
+                <Image source={HouseImage}></Image>
+                <Text>Search for houses to buy!</Text>
+                <Text>Search by place-name or postcode</Text>
+            </View>
         )
     }
 }
