@@ -6,18 +6,13 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+ import React, {Component} from 'react';
+ import Tabs from './config/Navigation';
 
-import { Text } from 'react-native';
-
-import AppContainer from './Navigation';
-
-
-export default class App extends Component {
-  render(){
-    return(
-    <AppContainer/>
-    )
-  }
-}
-
+ export default class App extends Component {
+   render(){
+     return(
+       <Tabs/>
+     )
+   }
+ }
