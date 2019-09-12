@@ -9,8 +9,9 @@ export default class Search extends Component {
         return(
             <View>
                 <Image source={HouseImage}></Image>
-                <Text>Search for houses to buy!</Text>
-                <Text>Search by place-name or postcode</Text>
+                <Text style={styles.description}>Search for houses to buy!</Text>
+                <Text style={styles.description}>Search by place-name or postcode</Text>
+                <TextInput placeholder="Search" style={styles.searchBar}/>
             </View>
         )
     }
@@ -18,9 +19,14 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
     description: {
+        marginBottom: 10,
         fontSize: 18,
         textAlign: 'center',
         color: '#656565',
-        marginTop: 65
+        marginTop: 25
+    },
+    searchBar: {
+        textAlign: 'center',
+        borderWidth: 5,
     }
 })
