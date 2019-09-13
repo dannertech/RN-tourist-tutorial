@@ -4,21 +4,42 @@ import HouseImage from '../Images/tourist-home-image.png';
 
 
 export default class Search extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            searchString: 'london',
+            isLoading: false,
+        };
+    }
     
+    _onSearchTextChanged = (event) => {
+        console.log('_onSearchTextChanged');
+        this.setState({ searchString: event.nativeEvent.text });
+        console.log('Current: ' + this.state.searchString+', Next:' + event.nativeEvent.text);
+    }
+
+    _onSubmit = () => {
+        //set searchString state to final input
+    }
+
+
     render(){
+        console.log('SearchPage.render');  
+        const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null ;                                 
         return(
             <View>
                 <Image source={HouseImage}></Image>
                 <Text style={styles.description}>Search for houses to buy!</Text>
                 <Text style={styles.description}>Search by place-name or postcode</Text>
                 <View style={styles.flowRight}>
-                <TextInput placeholder="Search" style={styles.searchBar}/>
+                <TextInput placeholder="Search via name or postcode" style={styles.searchBar} value={this.state.searchString} onChange={this._onSearchTextChanged}/>
                 <Button 
                 title="Go"
                 onPress={() => {}}
             color='#48BBEC'
                 />
                 </View>
+                {spinner}
             </View>
         )
     }
