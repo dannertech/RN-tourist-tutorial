@@ -9,19 +9,59 @@ export default class Search extends Component {
         this.state = {
             searchString: 'london',
             isLoading: false,
+            message: ''
         };
     }
     
     _onSearchTextChanged = (event) => {
         console.log('_onSearchTextChanged');
-        this.setState({ searchString: event.nativeEvent.text });
+        this.setState({ searchString: event });
         console.log('Current: ' + this.state.searchString+', Next:' + event.nativeEvent.text);
     }
 
+ _onSubmit = () => {
+     //get search string 
+    const searchString = this.state.searchString
+     //add search string to url
+    const query = 'https://api.nestoria.co.uk/api?country=uk&pretty=1&encoding=json&listing_type=buy&action=search_listings&page=1&place_name=' + searchString;
+     //perform fetch request
+     fetch(query)
+        .then((response) => response.json())
+        .then(json => this._handleResponse(json.response))
+        .catch(error =>
+            this.setState({
+                isLoading: false,
+                message: 'Something bad happened' + error
+            })
+        )
+ 
+ 
+    }
     _onSubmit = () => {
-        //set searchString state to final input
+        this.setState({ isLoading: true })
+        const query = 'https://api.nestoria.co.uk/api?country=uk&pretty=1&encoding=json&listing_type=buy&action=search_listings&page=1&place_name=' + this.state.searchString;
+        fetch(query)
+         .then(response => response.json())
+         .then(json => this._handleResponse(json.response))
+         .catch(error =>
+             this.setState({
+                 isLoading: false,
+                 message: 'Something bad happened' + error
+             })
+             )
+             
     }
 
+
+   _handleResponse = (response) => {
+       this.setState({ isLoading: false, message: ''})
+       if (response.application_response_code.substr(0,1) == '1'){
+           console.log('Properties found: ' + response.listings.length);
+
+       } else {
+           this.setState({ message: 'Location not recognized; please try again.'})
+       }
+   }
 
     render(){
         console.log('SearchPage.render');  
@@ -35,11 +75,12 @@ export default class Search extends Component {
                 <TextInput placeholder="Search via name or postcode" style={styles.searchBar} value={this.state.searchString} onChange={this._onSearchTextChanged}/>
                 <Button 
                 title="Go"
-                onPress={() => {}}
+                onPress={this._onSubmit}
             color='#48BBEC'
                 />
                 </View>
                 {spinner}
+                <Text style={styles.description}>{this.state.message}</Text>
             </View>
         )
     }
